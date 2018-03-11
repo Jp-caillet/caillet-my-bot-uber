@@ -1,9 +1,11 @@
 const request = require('request');
 
-class Botuber {
-  constructor (longitude, latitude) {
-    this.longitude = longitude;
-    this.latitude = latitude;
+module.exports = class Botuber {
+  constructor (longitudestart, latitudestart, longitudeend, latitudeend) {
+    this.longitudestart = longitudestart;
+    this.latitudestart = latitudestart;
+    this.longitudeend = longitudeend;
+    this.latitudeend = latitudeend;
   }
 
   /**
@@ -15,10 +17,10 @@ class Botuber {
       method: 'GET',
       url: 'https://api.uber.com/v1.2/estimates/price',
       qs: {
-        start_latitude: this.latitude,
-        start_longitude: this.longitude,
-        end_latitude: '48.8584',
-        end_longitude: '2.2945'
+        start_latitude: this.latitudestart,
+        start_longitude: this.longitudestart,
+        end_latitude: this.latitudeend,
+        end_longitude: this.longitudeend 
       },
       headers:{
         'Authorization': 'Token ' + 'GiXTv8BW2O-18gX4iNfVmzEkNm1Khmxo-ALAhVGH',
@@ -70,7 +72,4 @@ class Botuber {
   }
 };
 
-const test = new Botuber(2.3823087999999997,48.896551699999996);
-test.run();
-console.log(test.getName (0));
 
